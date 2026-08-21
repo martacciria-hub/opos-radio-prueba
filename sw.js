@@ -1,4 +1,4 @@
-const CACHE = 'opos-radio-v3';
+const CACHE = 'opos-radio-v4';
 const CORE = ['./', './index.html', './manifest.json', './icon.svg', './reto-test.html', './retos.html', './perfil.html'];
 
 const TOOLBAR = `
