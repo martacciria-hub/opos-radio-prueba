@@ -1,5 +1,5 @@
-const CACHE = 'opos-radio-v2';
-const CORE = ['./', './index.html', './manifest.json', './icon.svg', './reto-test.html'];
+const CACHE = 'opos-radio-v3';
+const CORE = ['./', './index.html', './manifest.json', './icon.svg', './reto-test.html', './retos.html', './perfil.html'];
 
 const TOOLBAR = `
 <style id="or-toolbar-style">
@@ -11,7 +11,7 @@ body{padding-bottom:82px!important}@media(min-width:800px){#orToolbar{max-width:
 <a href="index.html"><b>🏠</b>Inicio</a>
 <a href="index.html#estudio"><b>📚</b>Estudio</a>
 <a href="retos.html"><b>🏆</b>Retos</a>
-<a href="retos.html#perfil"><b>👤</b>Perfil</a>
+<a href="perfil.html"><b>👤</b>Perfil</a>
 </nav>`;
 
 function enhance(html, url){
@@ -27,7 +27,7 @@ function enhance(html, url){
     out = out.replace(/onclick=["']startChallenge\('module4'\)["']/g,'onclick="location.href=\'reto-test.html?mode=module4\'"');
   }
   if(out.includes('</body>') && !out.includes('id="orToolbar"')){
-    out = out.replace('</body>', TOOLBAR + `<script>(function(){var p=location.pathname;document.querySelectorAll('#orToolbar a').forEach(function(a){if(a.getAttribute('href').split('#')[0]===p || (p.endsWith('/')&&a.getAttribute('href')==='index.html'))a.classList.add('active')});if(location.hash==='#perfil'){setTimeout(function(){var x=document.querySelector('.hero,.profile,#playerName');if(x)x.scrollIntoView({behavior:'smooth',block:'start'})},250)}})();</script></body>`);
+    out = out.replace('</body>', TOOLBAR + `<script>(function(){var p=location.pathname;document.querySelectorAll('#orToolbar a').forEach(function(a){var h=a.getAttribute('href').split('#')[0];if(h==='perfil.html'&&p.endsWith('/perfil.html'))a.classList.add('active');else if(h==='retos.html'&&p.endsWith('/retos.html'))a.classList.add('active');else if(h==='index.html'&&(p.endsWith('/')||p.endsWith('/index.html')))a.classList.add('active')});})();</script></body>`);
   }
   return out;
 }
